@@ -24,13 +24,15 @@
     NSString *alertBody         =  [command.arguments objectAtIndex:1];
     NSNumber *repeatInterval    =  [command.arguments objectAtIndex:2];
     NSString *soundName         =  [command.arguments objectAtIndex:3];
-    NSString *notificationId    =  [command.arguments objectAtIndex:4];
+    NSInteger badge             = [[command.arguments objectAtIndex:4] intValue];
+    NSString *notificationId    =  [command.arguments objectAtIndex:5];
     
     notif.alertBody         = ([alertBody isEqualToString:@""])?nil:alertBody;
     notif.fireDate          = [NSDate dateWithTimeIntervalSince1970:fireDate];
     notif.repeatInterval    = [[repeatDict objectForKey: repeatInterval] intValue];
     notif.soundName         = soundName;
     notif.timeZone          = [NSTimeZone defaultTimeZone];
+    notif.applicationIconBadgeNumber = badge;
     
 	NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                 notificationId    , @"notificationId",
